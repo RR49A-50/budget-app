@@ -19,7 +19,8 @@ class OutcomeController extends Controller
     public function index()
     {
         $data = $this->service->all();
-        return response()->json($data, 200);
+        // return response()->json($data, 200);
+        return $this->response($data, 'sukses menampilkan data');
     }
 
     /**
@@ -29,7 +30,14 @@ class OutcomeController extends Controller
     {
         $payload = $request->all();
         $data = $this->service->create($payload);
-        return response()->json($data, 201);
+        // return response()->json($data, 201);
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => 'succesfully',
+        //     'data' => $data,
+        // ], 200);
+
+        return $this->response($data, 'sukses membuat data');
     }
 
     /**
@@ -38,7 +46,8 @@ class OutcomeController extends Controller
     public function show(int $id)
     {
         $data = $this->service->show($id);
-        return response()->json($data, 200);
+        // return response()->json($data, 200);
+        return $this->response($data, 'sukses menampilkan data');
     }
 
 
@@ -56,6 +65,8 @@ class OutcomeController extends Controller
     public function destroy(int $id)
     {
         $data = $this->service->delete($id);
-        return response()->json($data, 200);
+        // return response()->json($data, 200);
+        return $this->response($data, "sukses menghapus data");
     }
+    
 }

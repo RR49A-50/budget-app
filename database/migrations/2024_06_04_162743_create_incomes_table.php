@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->required();
+            $table->integer('price')->required();
+            $table->date('transaction_date')->required();
             $table->timestamps();
         });
     }

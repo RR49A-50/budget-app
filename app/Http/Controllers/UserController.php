@@ -2,44 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Income;
-use App\Services\IncomeService;
+use App\Models\User;
+use App\Services\UserService;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\IncomeRequest;
 
-class IncomeController extends Controller
+class UserController extends Controller
 {
-    public function __construct(protected IncomeService $service)
+    public function __construct(protected UserService $service)
     {
         
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $data = $this->service->all()->toArray();
-        // return response()->json($data, 200);
         // return $this->response($data, 200);
         return $this->response($data, 'sukses menampilkan data');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(IncomeRequest $request)
+    public function store(UserRequest $request)
     {
         $payload = $request->validated();
-        // dd($payload);
         $data = $this->service->create($payload);
         // return response()->json($data, 201);
         return $this->response($data, 'sukses membuat data');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
         $data = $this->service->show($id);
@@ -47,18 +36,11 @@ class IncomeController extends Controller
         return $this->response($data, 'sukses menampilkan data');
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Income $income)
+    public function update(Request $request, User $user)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id)
     {
         $data = $this->service->delete($id);
