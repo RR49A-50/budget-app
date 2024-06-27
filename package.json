@@ -1,13 +1,25 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "devDependencies": {
-        "axios": "^1.6.4",
-        "laravel-vite-plugin": "^1.0",
-        "vite": "^5.0"
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "pre-commit": "lint-staged"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "!(tests/*).php": [
+      "./vendor/bin/phpstan analyse --memory-limit=2G",
+      "vendor/bin/phpcs --colors --standard=phpcs.xml"
+    ]
+  }
 }
