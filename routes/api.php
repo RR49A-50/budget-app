@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\OutcomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,8 @@ route::middleware('auth:api')->group(function(){
 
 
 route::post('/login',[AuthController::class, 'login']);
+
+route::get('/role',[RoleController::class, 'index']);
+route::get('/role/{id}',[RoleController::class, 'show']);
+route::post('/role',[RoleController::class, 'store']);
+route::delete('/role/{id}',[RoleController::class, 'destroy']);
